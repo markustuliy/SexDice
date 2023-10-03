@@ -3,10 +3,12 @@ package com.markustuliy.sexdice;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -14,6 +16,10 @@ public class SexDiceActivity extends AppCompatActivity {
     private TextView resultBodyPart;
     private TextView resultAction;
     private TextView resultStile;
+    private TextView textname;
+    private String Name1;
+    private String Name2;
+    private boolean isEvent1 = true;
         private final Random random = new Random();
 
         @SuppressLint("MissingInflatedId")
@@ -25,9 +31,28 @@ public class SexDiceActivity extends AppCompatActivity {
             resultBodyPart = findViewById(R.id.resultBodyPart);
             resultAction = findViewById(R.id.resultAction);
             resultStile = findViewById(R.id.resultStile);
+            textname = findViewById(R.id.textname);
+            Intent intent = getIntent();
+            if (intent != null && intent.hasExtra("Name1received")) {
+                Name1 = intent.getStringExtra("Name1received");
+            }
+            if (intent != null && intent.hasExtra("Name2received")) {
+                Name2 = intent.getStringExtra("Name2received");
+            }
             rollButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (isEvent1) {
+                        // Выполните событие 1
+                        // Например, вывод сообщения или что-то еще
+                        textname.setText(Name1);
+                    } else {
+                        // Выполните событие 2
+                        // Например, изменение текста или другие действия
+                        textname.setText(Name2);
+                    }
+                    // Переключите состояние
+                    isEvent1 = !isEvent1;
                     // Генерируем случайное число от 1 до 10
                     int diceBodyPart = random.nextInt(7) + 1;
                     int diceAction = random.nextInt(6) + 1;

@@ -12,6 +12,9 @@
         android:theme="@style/Theme.SexDice"
         tools:targetApi="31">
         <activity
+            android:name=".SexRoulette"
+            android:exported="false" />
+        <activity
             android:name=".SexDiceActivity"
             android:exported="false" />
         <activity
