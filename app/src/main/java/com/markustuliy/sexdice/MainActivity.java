@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Button goToSexRouletteActivity = findViewById(R.id.SexRouletteButton);
 
         // Получение текста из EditText
-        EditText ETName1 = findViewById(R.id.ETName1); // Замените R.id.editText на ваш ID EditText
-        EditText ETName2 = findViewById(R.id.ETName2);
+        EditText ETNameMale = findViewById(R.id.ETName1); // Замените R.id.editText на ваш ID EditText
+        EditText ETNameFamale = findViewById(R.id.ETName2);
 
         goToSexDiceActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ETName1.addTextChangedListener(new TextWatcher() {
+        ETNameMale.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // Вызывается перед изменением текста
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // Вызывается после изменения текста
-                ETName1String = ETName1.getText().toString();
+                ETName1String = ETNameMale.getText().toString();
 
                 // В этом месте можно сохранить текст или выполнять другие действия с ним
                 // Например, сохранить текст в SharedPreferences, базу данных или переменную
             }
         });
-        ETName2.addTextChangedListener(new TextWatcher() {
+        ETNameFamale.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // Вызывается перед изменением текста
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // Вызывается после изменения текста
-                ETName2String = ETName2.getText().toString();
+                ETName2String = ETNameFamale.getText().toString();
 
                 // В этом месте можно сохранить текст или выполнять другие действия с ним
                 // Например, сохранить текст в SharedPreferences, базу данных или переменную

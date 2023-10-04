@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class SexDiceActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_sex_dice);
-            Button rollButton = findViewById(R.id.rollButton);
+            ImageButton rollButton = findViewById(R.id.rollButton);
             resultBodyPart = findViewById(R.id.resultBodyPart);
             resultAction = findViewById(R.id.resultAction);
             resultStile = findViewById(R.id.resultStile);

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/backgrounddark">
     <LinearLayout
         android:id="@+id/layout1top"
         android:layout_width="match_parent"
@@ -24,7 +25,8 @@
                 android:text="Введите имя первого игрока"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/ETName1"
@@ -32,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@color/white"/>
     </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -54,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:text="Введите имя второго игрока"
                 android:textStyle="bold"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/ETName2"
@@ -62,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
     </LinearLayout>
