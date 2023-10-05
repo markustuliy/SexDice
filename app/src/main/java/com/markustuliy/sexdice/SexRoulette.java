@@ -58,12 +58,12 @@ public class SexRoulette extends AppCompatActivity {
             tasksLiteList.add("Легкое Задание 3: мужчине...");
             // Средние задания
             tasksMediumList.add("Среднее Задание 1: ...");
-            tasksMediumList.add("Среднее Задание 2: ...");
+            tasksMediumList.add("Среднее Задание 2: мужчине");
             tasksMediumList.add("Среднее Задание 3: ...");
             // Экстрим задания задания
             tasksExtrimeList.add("Тяжелое Задание 1: ...");
             tasksExtrimeList.add("Тяжелое Задание 2: ...");
-            tasksExtrimeList.add("Тяжелое Задание 3: ...");
+            tasksExtrimeList.add("Тяжелое Задание 3: мужчине");
         }
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,38 +81,40 @@ public class SexRoulette extends AppCompatActivity {
                 isEvent1 = !isEvent1;
                 isMale = !isMale;
 
-                // Отображаем результат на TextView
-                if (!tasksLiteList.isEmpty()) {
-                    int randomIndex;
-                    String task;
+                int randomIndex;
+                String task;
 
-                    // Добавьте проверку пола игрока перед выводом задания
+                if (!tasksLiteList.isEmpty()) {
                     do {
                         randomIndex = random.nextInt(tasksLiteList.size());
                         task = tasksLiteList.get(randomIndex);
-                        tasksLiteList.remove(randomIndex);
-                    } while (isMale && task.contains("мужчине")); // Пропустить задания для мужчин
-                    task.replace("мужчине", "");
+                    } while ((isMale && task.contains("мужчине")) || (!isMale && task.contains("женщине")));
+
                     ResultRoulette.setText(task);
+                    tasksLiteList.remove(randomIndex);
                 } else {
                     if (!tasksMediumList.isEmpty()) {
-                        int randomIndex = random.nextInt(tasksMediumList.size());
-                        String task = tasksMediumList.get(randomIndex);
+                        do {
+                            randomIndex = random.nextInt(tasksMediumList.size());
+                            task = tasksMediumList.get(randomIndex);
+                        } while ((isMale && task.contains("мужчине")) || (!isMale && task.contains("женщине")));
+
                         ResultRoulette.setText(task);
                         tasksMediumList.remove(randomIndex);
-                    }else {
+                    } else {
                         if (!tasksExtrimeList.isEmpty()) {
-                            int randomIndex = random.nextInt(tasksExtrimeList.size());
-                            String task = tasksExtrimeList.get(randomIndex);
+                            do {
+                                randomIndex = random.nextInt(tasksExtrimeList.size());
+                                task = tasksExtrimeList.get(randomIndex);
+                            } while ((isMale && task.contains("мужчине")) || (!isMale && task.contains("женщине")));
+
                             ResultRoulette.setText(task);
                             tasksExtrimeList.remove(randomIndex);
-                        }else{
+                        } else {
                             ResultRoulette.setText("Все задания выполнены!");
                         }
                     }
                 }
-
-                //resultTextView.setText(String.valueOf(diceBodyPart));
             }
         });
     }
