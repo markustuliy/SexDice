@@ -89,7 +89,11 @@ public class SexDiceActivity extends AppCompatActivity {
                 resultText = "живот и нижнюю часть живота";
                 break;
             case 6:
-                resultText = "клитор/пенис";
+                if (isEvent1) {
+                    resultText = "пенис";
+                } else {
+                    resultText = "клитор";
+                }
                 break;
             default:
                 resultText = "спину";
@@ -143,7 +147,11 @@ public class SexDiceActivity extends AppCompatActivity {
                 resultText = "без рук";
                 break;
             default:
-                resultText = "пенисом/клитором";
+                if (isEvent1) {
+                    resultText = "клитором";
+                } else {
+                    resultText = "пенисом";
+                }
                 break;
         }
         return resultText;
