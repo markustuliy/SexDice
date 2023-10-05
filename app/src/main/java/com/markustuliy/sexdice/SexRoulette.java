@@ -21,7 +21,7 @@ public class SexRoulette extends AppCompatActivity {
     private ArrayList<String> tasksExtrimeList = new ArrayList<>();
     private TextView ResultRoulette;
     private ImageButton rollButton;
-    private TextView textname;
+    private TextView textName;
     private String Name1;
     private String Name2;
     private boolean isEvent1 = true;
@@ -38,7 +38,7 @@ public class SexRoulette extends AppCompatActivity {
         setContentView(R.layout.activity_sex_roulette);
         rollButton = findViewById(R.id.rouletteButton);
         ResultRoulette = findViewById(R.id.ResultRoulette);
-        textname = findViewById(R.id.textname);
+        textName = findViewById(R.id.textname);
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("Name1received")) {
             Name1 = intent.getStringExtra("Name1received");
@@ -71,11 +71,11 @@ public class SexRoulette extends AppCompatActivity {
                 if (isEvent1) {
                     // Выполните событие 1
                     // Например, вывод сообщения или что-то еще
-                    textname.setText(Name1);
+                    textName.setText(Name1);
                 } else {
                     // Выполните событие 2
                     // Например, изменение текста или другие действия
-                    textname.setText(Name2);
+                    textName.setText(Name2);
                 }
                 // Переключите состояние
                 isEvent1 = !isEvent1;

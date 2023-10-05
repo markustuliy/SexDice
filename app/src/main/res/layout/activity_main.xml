@@ -5,38 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/backgrounddark">
+    android:background="@color/black">
+    <LinearLayout
+        android:id="@+id/layout0top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/group_30">
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout1top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/layout0top"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/TVname1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Введите имя первого игрока"
+                android:fontFamily="@font/philosopher"
+                android:text="Введите имя парня"
+                android:textColor="#00FFF7"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                tools:ignore="MissingConstraints"
-                android:textColor="@color/white"/>
+                tools:ignore="MissingConstraints" />
 
             <EditText
                 android:id="@+id/ETName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/philosopher_bold_italic"
                 android:inputType="textPersonName"
-                android:text="Name"
-                android:textColor="@color/white"/>
-    </LinearLayout>
+                android:textAlignment="center"
+                android:textColor="#00FFF7"
+                android:textColorHint="#F4EAEA"
+                app:backgroundTint="#00FFF7"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout2top"
@@ -55,19 +68,24 @@
                 android:id="@+id/TVname2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Введите имя второго игрока"
+                android:fontFamily="@font/philosopher"
+                android:text="Введите имя девушки"
+                android:textColor="#FF00DD"
                 android:textStyle="bold"
-                tools:ignore="MissingConstraints"
-                android:textColor="@color/white"/>
+                tools:ignore="MissingConstraints" />
 
             <EditText
                 android:id="@+id/ETName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contextClickable="false"
+                android:cursorVisible="false"
                 android:ems="10"
+                android:fontFamily="@font/philosopher_bold_italic"
                 android:inputType="textPersonName"
-                android:text="Name"
-                android:textColor="@color/white"/>
+                android:textAlignment="center"
+                android:textColor="#FF00DD"
+                app:backgroundTint="#FF00DD"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -78,22 +96,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_below="@id/layout2top"
-        android:gravity="center">
-    <Button
-        android:id="@+id/SexDiceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sex Dice" />
+        android:gravity="center"
+        android:background="@drawable/light">
+
+        <Button
+            android:id="@+id/SexDiceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF00FA"
+            android:fontFamily="@font/philosopher_bold"
+            android:textColor="@color/black"
+            android:text="Sex Dice" />
+
         <Button
             android:id="@+id/SexRouletteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sex Roulette" />
+            android:fontFamily="@font/philosopher_bold"
+            android:textColor="@color/black"
+            android:text="Sex Roulette"
+            android:backgroundTint="#FF00FA"/>
+
         <Button
             android:id="@+id/SexPosesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sex Poses" />
+            android:fontFamily="@font/philosopher_bold"
+            android:textColor="@color/black"
+            android:text="Sex Poses"
+            android:backgroundTint="#FF00FA"/>
     </LinearLayout>
 
 </RelativeLayout>
