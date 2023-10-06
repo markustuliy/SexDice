@@ -16,9 +16,12 @@ import java.util.Random;
 public class SexRoulette extends AppCompatActivity {
     private final Random random = new Random();
 
-    private ArrayList<String> tasksLiteList = new ArrayList<>();
-    private ArrayList<String> tasksMediumList = new ArrayList<>();
-    private ArrayList<String> tasksExtrimeList = new ArrayList<>();
+    private ArrayList<String> tasksLiteListMale = new ArrayList<>();
+    private ArrayList<String> tasksLiteListWoman = new ArrayList<>();
+    private ArrayList<String> tasksMediumListMale = new ArrayList<>();
+    private ArrayList<String> tasksMediumListWoman = new ArrayList<>();
+    private ArrayList<String> tasksExtrimeListMale = new ArrayList<>();
+    private ArrayList<String> tasksExtrimeListWoman = new ArrayList<>();
     private TextView ResultRoulette;
     private ImageButton rollButton;
     private TextView textName;
@@ -26,10 +29,14 @@ public class SexRoulette extends AppCompatActivity {
     private String Name2;
     private boolean isEvent1 = true;
     private boolean isMale;
+    private int i = 0;
 
-    private static final String KEY_TASKS_LIST_LITE = "tasksLiteList";
-    private static final String KEY_TASKS_MEDIUM_LITE = "tasksMediumList";
-    private static final String KEY_TASKS_EXTRIME_LITE = "tasksExtrimeList";
+    private static final String KEY_TASKS_LIST_LITE_MALE = "tasksLiteListMale";
+    private static final String KEY_TASKS_LIST_LITE_WOMAN = "tasksLiteListWoman";
+    private static final String KEY_TASKS_MEDIUM_LITE_MALE = "tasksMediumListMale";
+    private static final String KEY_TASKS_MEDIUM_LITE_WOMAN = "tasksMediumListWoman";
+    private static final String KEY_TASKS_EXTRIME_LITE_MALE = "tasksExtrimeListMale";
+    private static final String KEY_TASKS_EXTRIME_LITE_WOMAN = "tasksExtrimeListWoman";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,23 +54,58 @@ public class SexRoulette extends AppCompatActivity {
             Name2 = intent.getStringExtra("Name2received");
         }
         if (savedInstanceState != null) {
-            tasksLiteList = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_LITE);
-            tasksMediumList = savedInstanceState.getStringArrayList(KEY_TASKS_MEDIUM_LITE);
-            tasksExtrimeList = savedInstanceState.getStringArrayList(KEY_TASKS_EXTRIME_LITE);
+            tasksLiteListMale = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_LITE_MALE);
+            tasksLiteListWoman = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_LITE_WOMAN);
+            tasksMediumListMale = savedInstanceState.getStringArrayList(KEY_TASKS_MEDIUM_LITE_MALE);
+            tasksMediumListWoman = savedInstanceState.getStringArrayList(KEY_TASKS_MEDIUM_LITE_WOMAN);
+            tasksExtrimeListMale = savedInstanceState.getStringArrayList(KEY_TASKS_EXTRIME_LITE_MALE);
+            tasksExtrimeListWoman = savedInstanceState.getStringArrayList(KEY_TASKS_EXTRIME_LITE_WOMAN);
             isMale = savedInstanceState.getBoolean("isMale");
         } else {
-            // Легкие задания
-            tasksLiteList.add("Легкое Задание 1: ...");
-            tasksLiteList.add("Легкое Задание 2: мужчине ...");
-            tasksLiteList.add("Легкое Задание 3: мужчине...");
-            // Средние задания
-            tasksMediumList.add("Среднее Задание 1: ...");
-            tasksMediumList.add("Среднее Задание 2: мужчине");
-            tasksMediumList.add("Среднее Задание 3: ...");
-            // Экстрим задания задания
-            tasksExtrimeList.add("Тяжелое Задание 1: ...");
-            tasksExtrimeList.add("Тяжелое Задание 2: ...");
-            tasksExtrimeList.add("Тяжелое Задание 3: мужчине");
+            // Легкие задания Мужчине
+            tasksLiteListMale.add("Легкое Задание Мужчине 1: ...");
+            tasksLiteListMale.add("Легкое Задание Мужчине 2: ...");
+            tasksLiteListMale.add("Легкое Задание Мужчине 3: ...");
+            tasksLiteListMale.add("Легкое Задание Мужчине 4: ...");
+            tasksLiteListMale.add("Легкое Задание Мужчине 5: ...");
+            tasksLiteListMale.add("Легкое Задание Мужчине 6: ...");
+            // Легкие задания Женщине
+            tasksLiteListWoman.add("Легкое Задание Женщине 1: ...");
+            tasksLiteListWoman.add("Легкое Задание Женщине 2: ...");
+            tasksLiteListWoman.add("Легкое Задание Женщине 3: ...");
+            tasksLiteListWoman.add("Легкое Задание Женщине 4: ...");
+            tasksLiteListWoman.add("Легкое Задание Женщине 5: ...");
+            tasksLiteListWoman.add("Легкое Задание Женщине 6: ...");
+
+            // Средние задания Мужчине
+            tasksMediumListMale.add("Среднее Задание Мужчине 1: ...");
+            tasksMediumListMale.add("Среднее Задание Мужчине 2: ...");
+            tasksMediumListMale.add("Среднее Задание Мужчине 3: ...");
+            tasksMediumListMale.add("Среднее Задание Мужчине 4: ...");
+            tasksMediumListMale.add("Среднее Задание Мужчине 5: ...");
+            tasksMediumListMale.add("Среднее Задание Мужчине 6: ...");
+            // Средние задания Женщине
+            tasksMediumListWoman.add("Среднее Задание Женщине 1: ...");
+            tasksMediumListWoman.add("Среднее Задание Женщине 2: ...");
+            tasksMediumListWoman.add("Среднее Задание Женщине 3: ...");
+            tasksMediumListWoman.add("Среднее Задание Женщине 4: ...");
+            tasksMediumListWoman.add("Среднее Задание Женщине 5: ...");
+            tasksMediumListWoman.add("Среднее Задание Женщине 6: ...");
+
+            // Экстрим задания Мужчине
+            tasksExtrimeListMale.add("Тяжелое Задание Мужчине 1: ...");
+            tasksExtrimeListMale.add("Тяжелое Задание Мужчине 2: ...");
+            tasksExtrimeListMale.add("Тяжелое Задание Мужчине 3: ...");
+            tasksExtrimeListMale.add("Тяжелое Задание Мужчине 4: ...");
+            tasksExtrimeListMale.add("Тяжелое Задание Мужчине 5: ...");
+            tasksExtrimeListMale.add("Тяжелое Задание Мужчине 6: ...");
+            // Экстрим задания Женщине
+            tasksExtrimeListWoman.add("Тяжелое Задание Женщине 1: ...");
+            tasksExtrimeListWoman.add("Тяжелое Задание Женщине 2: ...");
+            tasksExtrimeListWoman.add("Тяжелое Задание Женщине 3: ...");
+            tasksExtrimeListWoman.add("Тяжелое Задание Женщине 4: ...");
+            tasksExtrimeListWoman.add("Тяжелое Задание Женщине 5: ...");
+            tasksExtrimeListWoman.add("Тяжелое Задание Женщине 6: ...");
         }
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,39 +125,52 @@ public class SexRoulette extends AppCompatActivity {
 
                 int randomIndex;
                 String task;
-
-                if (!tasksLiteList.isEmpty()) {
-                    do {
-                        randomIndex = random.nextInt(tasksLiteList.size());
-                        task = tasksLiteList.get(randomIndex);
-                    } while ((isMale && task.contains("мужчине")) || (!isMale && task.contains("женщине")));
-
-                    ResultRoulette.setText(task);
-                    tasksLiteList.remove(randomIndex);
-                } else {
-                    if (!tasksMediumList.isEmpty()) {
-                        do {
-                            randomIndex = random.nextInt(tasksMediumList.size());
-                            task = tasksMediumList.get(randomIndex);
-                        } while ((isMale && task.contains("мужчине")) || (!isMale && task.contains("женщине")));
-
+                int sum = numeric(0); // Вызываем функцию и сохраняем результат в переменной sum
+                if (isMale && sum < 4){
+                    if (!tasksLiteListMale.isEmpty()) {
+                        randomIndex = random.nextInt(tasksLiteListMale.size());
+                        task = tasksLiteListMale.get(randomIndex);
                         ResultRoulette.setText(task);
-                        tasksMediumList.remove(randomIndex);
-                    } else {
-                        if (!tasksExtrimeList.isEmpty()) {
-                            do {
-                                randomIndex = random.nextInt(tasksExtrimeList.size());
-                                task = tasksExtrimeList.get(randomIndex);
-                            } while ((isMale && task.contains("мужчине")) || (!isMale && task.contains("женщине")));
-
+                        tasksLiteListMale.remove(randomIndex);
+                    } else if (!tasksMediumListMale.isEmpty()){
+                            randomIndex = random.nextInt(tasksMediumListMale.size());
+                            task = tasksMediumListMale.get(randomIndex);
                             ResultRoulette.setText(task);
-                            tasksExtrimeList.remove(randomIndex);
-                        } else {
-                            ResultRoulette.setText("Все задания выполнены!");
-                        }
+                            tasksMediumListMale.remove(randomIndex);
+                    } else if (!tasksExtrimeListMale.isEmpty()) {
+                                randomIndex = random.nextInt(tasksExtrimeListMale.size());
+                                task = tasksExtrimeListMale.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksExtrimeListMale.remove(randomIndex);
+                    } else {
+                        ResultRoulette.setText("Все задания выполнены!");
+                    }
+                } else {
+                    if (!tasksLiteListWoman.isEmpty()) {
+                        randomIndex = random.nextInt(tasksLiteListWoman.size());
+                        task = tasksLiteListWoman.get(randomIndex);
+                        ResultRoulette.setText(task);
+                        tasksLiteListWoman.remove(randomIndex);
+                    } else if (!tasksMediumListWoman.isEmpty()){
+                        randomIndex = random.nextInt(tasksMediumListWoman.size());
+                        task = tasksMediumListWoman.get(randomIndex);
+                        ResultRoulette.setText(task);
+                        tasksMediumListWoman.remove(randomIndex);
+                    } else if (!tasksExtrimeListWoman.isEmpty()) {
+                        randomIndex = random.nextInt(tasksExtrimeListWoman.size());
+                        task = tasksExtrimeListWoman.get(randomIndex);
+                        ResultRoulette.setText(task);
+                        tasksExtrimeListWoman.remove(randomIndex);
+                    }
+                    else {
+                        ResultRoulette.setText("Все задания выполнены!");
                     }
                 }
+
             }
         });
+    }
+    public int numeric (int i) {
+        return i + 1;
     }
 }
