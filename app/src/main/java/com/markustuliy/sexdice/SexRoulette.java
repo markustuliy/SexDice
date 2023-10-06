@@ -30,6 +30,7 @@ public class SexRoulette extends AppCompatActivity {
     private boolean isEvent1 = true;
     private boolean isMale;
     private int i = 0;
+    private int counter = 0;
 
     private static final String KEY_TASKS_LIST_LITE_MALE = "tasksLiteListMale";
     private static final String KEY_TASKS_LIST_LITE_WOMAN = "tasksLiteListWoman";
@@ -41,6 +42,7 @@ public class SexRoulette extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sex_roulette);
         rollButton = findViewById(R.id.rouletteButton);
@@ -125,8 +127,12 @@ public class SexRoulette extends AppCompatActivity {
 
                 int randomIndex;
                 String task;
-                int sum = numeric(0); // Вызываем функцию и сохраняем результат в переменной sum
-                if (isMale && sum < 4){
+                CounterExample example = new CounterExample();
+
+                int count1 = example.incrementCounter();
+
+
+                if (isMale && count1 < 4){
                     if (!tasksLiteListMale.isEmpty()) {
                         randomIndex = random.nextInt(tasksLiteListMale.size());
                         task = tasksLiteListMale.get(randomIndex);
@@ -170,7 +176,12 @@ public class SexRoulette extends AppCompatActivity {
             }
         });
     }
-    public int numeric (int i) {
-        return i + 1;
+    public class CounterExample {
+        public int incrementCounter() {
+            // Увеличиваем значение счетчика на 1
+            counter++;
+            // Возвращаем значение счетчика
+            return counter;
+        }
     }
 }
