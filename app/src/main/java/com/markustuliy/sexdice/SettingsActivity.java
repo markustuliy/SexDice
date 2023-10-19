@@ -99,14 +99,14 @@ public class SettingsActivity extends AppCompatActivity {
 
             int checkedRBOrangeId = RGGreen.getCheckedRadioButtonId();
             // Найдём переключатель по его id
-            RadioButton myRBOrange = findViewById(checkedRBOrangeId);
+        RadioButton myRBOrange = findViewById(checkedRBOrangeId);
+        APP_SETTINGS_GREEN = checkedRBGreenId;
 
             int checkedRBRedId = RGGreen.getCheckedRadioButtonId();
         // Найдём переключатель по его id
-            RadioButton myRBRed = findViewById(checkedRBRedId);
+        RadioButton myRBRed = findViewById(checkedRBRedId);
+        APP_SETTINGS_GREEN = checkedRBGreenId;
 
-
-        }
 
             editor.apply();
 
