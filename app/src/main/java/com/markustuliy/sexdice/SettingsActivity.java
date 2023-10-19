@@ -2,44 +2,31 @@ package com.markustuliy.sexdice;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private static final String APP_PREFERENCES = "Preferences";
     private SharedPreferences mSettings;
-    public static final String SETTINGS = "settings";
-    public static final boolean APP_SETTINGS_ANAL = false; // настройка anal
-    public static final boolean APP_SETTINGS_ORAL = false; // настройка oral
-    public static int APP_SETTINGS_GREEN = 1; // настройка Green
-    public static int APP_SETTINGS_ORANGE = 1; // настройка Orande
-    public static int APP_SETTINGS_RED = 1; // настройка Red
+
+    // Создайте ключи для каждого `RadioGroup` и других параметров
+    public static final String APP_SETTINGS_ANAL = "settings_anal";
+    public static final String APP_SETTINGS_ORAL = "settings_oral";
+    public static final String APP_SETTINGS_GREEN = "settings_green";
+    public static final String APP_SETTINGS_ORANGE = "settings_orange";
+    public static final String APP_SETTINGS_RED = "settings_red";
+
     private Switch SwitchAnal;
     private Switch SwitchOral;
-    private RadioButton RBG1;
-    private RadioButton RBG2;
-    private RadioButton RBG3;
-    private RadioButton RBO1;
-    private RadioButton RBO2;
-    private RadioButton RBO3;
-    private RadioButton RBR1;
-    private RadioButton RBR2;
-    private RadioButton RBR3;
     private RadioGroup RGGreen;
     private RadioGroup RGOrange;
     private RadioGroup RGRed;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,72 +34,143 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
 
         SwitchAnal = findViewById(R.id.switchAnal);
-
         SwitchOral = findViewById(R.id.switchOral);
-
         RGGreen = findViewById(R.id.RG1);
-        RBG1 = findViewById(R.id.RBGreen8);
-        RBG2 = findViewById(R.id.RBGreen16);
-        RBG3 = findViewById(R.id.RBGreen24);
-
         RGOrange = findViewById(R.id.RG2);
-        RBO1 = findViewById(R.id.RBorange8);
-        RBO2 = findViewById(R.id.RBorange16);
-        RBO3 = findViewById(R.id.RBorange24);
-
         RGRed = findViewById(R.id.RG3);
-        RBR1 = findViewById(R.id.RBred8);
-        RBR2 = findViewById(R.id.RBred16);
-        RBR3 = findViewById(R.id.RBred24);
 
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        // Устанавливаем сохраненные значения
+        SwitchAnal.setChecked(mSettings.getBoolean(APP_SETTINGS_ANAL, false));
+        SwitchOral.setChecked(mSettings.getBoolean(APP_SETTINGS_ORAL, false));
+
+        int greenValue = mSettings.getInt(APP_SETTINGS_GREEN, 8);
+        setRadioButtonSelectedGreen(RGGreen, greenValue);
+
+        int orangeValue = mSettings.getInt(APP_SETTINGS_ORANGE, 8);
+        setRadioButtonSelectedOrange(RGOrange, orangeValue);
+
+        int redValue = mSettings.getInt(APP_SETTINGS_RED, 8);
+        setRadioButtonSelectedRed(RGRed, redValue);
     }
-    private void setDefaultValues() {
-        mSettings = getSharedPreferences(SETTINGS, Context.MODE_PRIVATE);
-        if(mSettings != null){
-            SwitchAnal.setChecked(APP_SETTINGS_ANAL);
-            SwitchOral.setChecked(APP_SETTINGS_ORAL);
+
+    private void setRadioButtonSelectedGreen(RadioGroup radioGroup, int value) {
+        RadioButton radioButton;
+        switch (value) {
+            case 8:
+                radioButton = findViewById(R.id.RBGreen8);
+                break;
+            case 16:
+                radioButton = findViewById(R.id.RBGreen16);
+                break;
+            case 24:
+                radioButton = findViewById(R.id.RBGreen24);
+                break;
+            default:
+                radioButton = findViewById(R.id.RBGreen8); // Значение по умолчанию
         }
+        radioGroup.check(radioButton.getId());
     }
-
-    public static class SettingsFragment extends PreferenceFragmentCompat {
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
+    private void setRadioButtonSelectedOrange(RadioGroup radioGroup, int value) {
+        RadioButton radioButton;
+        switch (value) {
+            case 8:
+                radioButton = findViewById(R.id.RBorange8);
+                break;
+            case 16:
+                radioButton = findViewById(R.id.RBorange16);
+                break;
+            case 24:
+                radioButton = findViewById(R.id.RBorange24);
+                break;
+            default:
+                radioButton = findViewById(R.id.RBorange8); // Значение по умолчанию
         }
+        radioGroup.check(radioButton.getId());
     }
-    private void saveSettings(){
+    private void setRadioButtonSelectedRed(RadioGroup radioGroup, int value) {
+        RadioButton radioButton;
+        switch (value) {
+            case 8:
+                radioButton = findViewById(R.id.RBred8);
+                break;
+            case 16:
+                radioButton = findViewById(R.id.RBred16);
+                break;
+            case 24:
+                radioButton = findViewById(R.id.RBred24);
+                break;
+            default:
+                radioButton = findViewById(R.id.RBred8); // Значение по умолчанию
+        }
+        radioGroup.check(radioButton.getId());
+    }
 
+    private void saveSettings() {
+        // Сохраняем значения в SharedPreferences при изменении настроек
         SharedPreferences.Editor editor = mSettings.edit();
+        editor.putBoolean(APP_SETTINGS_ANAL, SwitchAnal.isChecked());
+        editor.putBoolean(APP_SETTINGS_ORAL, SwitchOral.isChecked());
 
-        if(mSettings != null){
-            if (!SwitchAnal.isChecked()) {
-                SwitchAnal.setChecked(APP_SETTINGS_ANAL);
-            }
-            if (!SwitchOral.isChecked()) {
-                SwitchOral.setChecked(APP_SETTINGS_ORAL);
-            }
+        int greenValue = getSelectedRadioButtonGreenValue(RGGreen);
+        editor.putInt(APP_SETTINGS_GREEN, greenValue);
+
+        int orangeValue = getSelectedRadioButtonOrangeValue(RGOrange);
+        editor.putInt(APP_SETTINGS_ORANGE, orangeValue);
+
+        int redValue = getSelectedRadioButtonRedValue(RGRed);
+        editor.putInt(APP_SETTINGS_RED, redValue);
+
+        editor.apply();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private int getSelectedRadioButtonGreenValue(RadioGroup radioGroup) {
+        int radioButtonId = radioGroup.getCheckedRadioButtonId();
+        switch (radioButtonId) {
+            case R.id.RBGreen8:
+                return 8;
+            case R.id.RBGreen16:
+                return 16;
+            case R.id.RBGreen24:
+                return 24;
+            default:
+                return 8; // Значение по умолчанию
         }
-            int checkedRBGreenId = RGGreen.getCheckedRadioButtonId();
-            // Найдём переключатель по его id
-            RadioButton myRBGreen = findViewById(checkedRBGreenId);
-            APP_SETTINGS_GREEN = checkedRBGreenId;
+    }
+    @SuppressLint("NonConstantResourceId")
+    private int getSelectedRadioButtonOrangeValue(RadioGroup radioGroup) {
+        int radioButtonId = radioGroup.getCheckedRadioButtonId();
+        switch (radioButtonId) {
+            case R.id.RBorange8:
+                return 8;
+            case R.id.RBorange16:
+                return 16;
+            case R.id.RBorange24:
+                return 24;
+            default:
+                return 8; // Значение по умолчанию
+        }
+    }
+    @SuppressLint("NonConstantResourceId")
+    private int getSelectedRadioButtonRedValue(RadioGroup radioGroup) {
+        int radioButtonId = radioGroup.getCheckedRadioButtonId();
+        switch (radioButtonId) {
+            case R.id.RBred8:
+                return 8;
+            case R.id.RBred16:
+                return 16;
+            case R.id.RBred24:
+                return 24;
+            default:
+                return 8; // Значение по умолчанию
+        }
+    }
 
-            int checkedRBOrangeId = RGGreen.getCheckedRadioButtonId();
-            // Найдём переключатель по его id
-        RadioButton myRBOrange = findViewById(checkedRBOrangeId);
-        APP_SETTINGS_GREEN = checkedRBGreenId;
-
-            int checkedRBRedId = RGGreen.getCheckedRadioButtonId();
-        // Найдём переключатель по его id
-        RadioButton myRBRed = findViewById(checkedRBRedId);
-        APP_SETTINGS_GREEN = checkedRBGreenId;
-
-
-            editor.apply();
-
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveSettings(); // Вызываем сохранение настроек при завершении активности
     }
 }
