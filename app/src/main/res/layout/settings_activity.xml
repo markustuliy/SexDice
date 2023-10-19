@@ -28,8 +28,7 @@
         app:layout_constraintVertical_bias="0.0">
 
 
-
-        <androidx.appcompat.widget.SwitchCompat
+        <Switch
             android:id="@+id/switchOral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,14 +36,16 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:checked="false"
             android:enabled="true"
-            android:text="Оральный секс   "
-            android:textColor="#FFFFFF"
             android:fontFamily="@font/philosopher"
+            android:text="Оральный секс   "
 
-            android:textSize="16sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-        <androidx.appcompat.widget.SwitchCompat
+        <Switch
             android:id="@+id/switchAnal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,7 +57,8 @@
             android:text="Анальный секс   "
             android:fontFamily="@font/philosopher"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <RadioGroup
             android:layout_width="110dp"
@@ -82,10 +84,11 @@
                 android:id="@+id/RBGreen8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8"
+                android:checked="true"
                 android:fontFamily="@font/philosopher"
-                android:textSize="16dp"
+                android:text="8"
                 android:textColor="@color/white"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -135,10 +138,11 @@
                 android:id="@+id/RBorange8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8"
+                android:checked="true"
                 android:fontFamily="@font/philosopher"
-                android:textSize="16dp"
+                android:text="8"
                 android:textColor="@color/white"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -189,10 +193,11 @@
                 android:id="@+id/RBred8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8"
+                android:checked="true"
                 android:fontFamily="@font/philosopher"
-                android:textSize="16dp"
+                android:text="8"
                 android:textColor="@color/white"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
