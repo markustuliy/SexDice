@@ -2,6 +2,7 @@ package com.markustuliy.sexdice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button goToSexDiceActivity = findViewById(R.id.SexDiceButton);
         Button goToSexRouletteActivity = findViewById(R.id.SexRouletteButton);
+        Button goToSettingsActivity = findViewById(R.id.SettingButton);
 
         // Получение текста из EditText
-        EditText ETNameMale = findViewById(R.id.ETName1); // Замените R.id.editText на ваш ID EditText
-        EditText ETNameFamale = findViewById(R.id.ETName2);
+        EditText ETNameMale = findViewById(R.id.ETName3); // Замените R.id.editText на ваш ID EditText
+        EditText ETNameFamale = findViewById(R.id.ETName4);
 
         goToSexDiceActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SexRoulette.class);
                 intent.putExtra("Name1received", ETName1String);
                 intent.putExtra("Name2received", ETName2String);
+                startActivity(intent);
+            }
+        });
+        goToSettingsActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
