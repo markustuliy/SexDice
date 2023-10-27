@@ -68,9 +68,9 @@ public class SexRoulette extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView);
         Intent intent = getIntent();
         SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        int LiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 8);
-        int MediumSettingsCounter = mSettings.getInt(APP_SETTINGS_ORANGE, 8);
-        int ExtremeSettingsCounter = mSettings.getInt(APP_SETTINGS_RED, 8);
+        int LiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 2);
+        int MediumSettingsCounter = mSettings.getInt(APP_SETTINGS_ORANGE, 2);
+        int ExtremeSettingsCounter = mSettings.getInt(APP_SETTINGS_RED, 2);
         if (intent != null && intent.hasExtra("Name1received")) {
             Name1 = intent.getStringExtra("Name1received");
         }
@@ -134,18 +134,7 @@ public class SexRoulette extends AppCompatActivity {
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isEvent1) {
-                    // Выполните событие 1
-                    // Например, вывод сообщения или что-то еще
-                    textName.setText(Name1);
-                } else {
-                    // Выполните событие 2
-                    // Например, изменение текста или другие действия
-                    textName.setText(Name2);
-                }
-                // Переключите состояние
-                isEvent1 = !isEvent1;
-                isMale = !isMale;
+
 
                 old_deegre = deegre % 360;
                 deegre = random.nextInt(3600 ) + 720;
@@ -169,8 +158,15 @@ public class SexRoulette extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        if (isMale & counterLite < LiteSettingsCounter){
-                            if (!tasksLiteListMale.isEmpty()) {
+                        if (isEvent1) {
+                            textName.setText(Name1);
+                        } else {
+                            textName.setText(Name2);
+                        }
+                        isEvent1 = !isEvent1;
+                        isMale = !isMale;
+                        if (isMale){
+                            if (!tasksLiteListMale.isEmpty() & counterLite < LiteSettingsCounter) {
                                 counterLite = exampleLite.incrementCounter();
                                 randomIndex = random.nextInt(tasksLiteListMale.size());
                                 task = tasksLiteListMale.get(randomIndex);
