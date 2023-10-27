@@ -6,6 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -33,6 +36,10 @@ public class SexRoulette extends AppCompatActivity {
     private int counterLite = 0;
     private int counterMedium = 0;
     private int counterExtreme = 0;
+    private int deegre = 0;
+    private int old_deegre = 0;
+    private static final float FACTOR = 4.83f;
+
 
     private static final String KEY_TASKS_LIST_LITE_MALE = "tasksLiteListMale";
     private static final String KEY_TASKS_LIST_LITE_WOMAN = "tasksLiteListWoman";
@@ -126,6 +133,32 @@ public class SexRoulette extends AppCompatActivity {
                 // Переключите состояние
                 isEvent1 = !isEvent1;
                 isMale = !isMale;
+
+                old_deegre = deegre % 360;
+                deegre = random.nextInt(3600 ) + 720;
+                RotateAnimation rotate = new RotateAnimation(old_deegre, deegre,
+                        RotateAnimation.RELATIVE_TO_SELF, 0.5f,RotateAnimation.RELATIVE_TO_SELF,0.5f);
+                rotate.setDuration(3600);
+                rotate.setFillAfter(true);
+                rotate.setInterpolator(new DecelerateInterpolator());
+                rotate.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+
+                });
+                rollButton.startAnimation(rotate);
 
                 int randomIndex;
                 String task;

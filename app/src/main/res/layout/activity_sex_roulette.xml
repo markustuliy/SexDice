@@ -7,28 +7,27 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/imgPlaylistItemBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:maxHeight="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_5" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/group_30"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/textname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Вращай"
-        android:textColor="@color/white"
+        android:textColor="#FF00DD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/ResultRoulette"
@@ -44,28 +43,37 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/light"
         android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ResultRoulette"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-30dp"
-            android:background="@drawable/wheel"
             android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/rouletteButton"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/spin" />
+                android:background="@drawable/wheel">
+            </ImageView>
         </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageButton
+            android:id="@+id/rouletteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spin" />
+    </RelativeLayout>
 
     </RelativeLayout>
 

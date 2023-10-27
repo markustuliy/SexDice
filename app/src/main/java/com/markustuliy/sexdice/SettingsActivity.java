@@ -2,8 +2,11 @@ package com.markustuliy.sexdice;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -33,6 +36,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
+        ImageButton goToMainActivity = findViewById(R.id.save_btn);
+
         SwitchAnal = findViewById(R.id.switchAnal);
         SwitchOral = findViewById(R.id.switchOral);
         RGGreen = findViewById(R.id.RG1);
@@ -53,6 +58,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         int redValue = mSettings.getInt(APP_SETTINGS_RED, 8);
         setRadioButtonSelectedRed(RGRed, redValue);
+        goToMainActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setRadioButtonSelectedGreen(RadioGroup radioGroup, int value) {
