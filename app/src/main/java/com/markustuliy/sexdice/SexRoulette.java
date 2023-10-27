@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class SexRoulette extends AppCompatActivity {
         rollButton = findViewById(R.id.rouletteButton);
         ResultRoulette = findViewById(R.id.ResultRoulette);
         textName = findViewById(R.id.textname);
+        ImageView imageView = findViewById(R.id.imageView);
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("Name1received")) {
             Name1 = intent.getStringExtra("Name1received");
@@ -141,7 +143,14 @@ public class SexRoulette extends AppCompatActivity {
                 rotate.setDuration(3600);
                 rotate.setFillAfter(true);
                 rotate.setInterpolator(new DecelerateInterpolator());
+
+
                 rotate.setAnimationListener(new Animation.AnimationListener() {
+                    int randomIndex;
+                    String task;
+                    CounterLiteExample exampleLite = new CounterLiteExample();
+                    CounterMediumExample exampleMedium = new CounterMediumExample();
+                    CounterExtremeExample exampleExtreme = new CounterExtremeExample();
                     @Override
                     public void onAnimationStart(Animation animation) {
 
@@ -149,7 +158,52 @@ public class SexRoulette extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-
+                        if (isMale & counterLite < 4){
+                            if (!tasksLiteListMale.isEmpty()) {
+                                counterLite = exampleLite.incrementCounter();
+                                randomIndex = random.nextInt(tasksLiteListMale.size());
+                                task = tasksLiteListMale.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksLiteListMale.remove(randomIndex);
+                            } else if (!tasksMediumListMale.isEmpty() & counterMedium < 4){
+                                randomIndex = random.nextInt(tasksMediumListMale.size());
+                                task = tasksMediumListMale.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksMediumListMale.remove(randomIndex);
+                                counterMedium = exampleMedium.incrementCounter();
+                            } else if (!tasksExtremeListMale.isEmpty() & counterExtreme < 4) {
+                                randomIndex = random.nextInt(tasksExtremeListMale.size());
+                                task = tasksExtremeListMale.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksExtremeListMale.remove(randomIndex);
+                                counterExtreme = exampleExtreme.incrementCounter();
+                            } else {
+                                ResultRoulette.setText("Все задания выполнены!");
+                            }
+                        } else {
+                            if (!tasksLiteListWoman.isEmpty() & counterLite < 4) {
+                                randomIndex = random.nextInt(tasksLiteListWoman.size());
+                                task = tasksLiteListWoman.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksLiteListWoman.remove(randomIndex);
+                                counterLite = exampleLite.incrementCounter();
+                            } else if (!tasksMediumListWoman.isEmpty() & counterMedium < 4){
+                                randomIndex = random.nextInt(tasksMediumListWoman.size());
+                                task = tasksMediumListWoman.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksMediumListWoman.remove(randomIndex);
+                                counterMedium = exampleMedium.incrementCounter();
+                            } else if (!tasksExtremeListWoman.isEmpty() & counterExtreme < 4) {
+                                randomIndex = random.nextInt(tasksExtremeListWoman.size());
+                                task = tasksExtremeListWoman.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksExtremeListWoman.remove(randomIndex);
+                                counterExtreme = exampleExtreme.incrementCounter();
+                            }
+                            else {
+                                ResultRoulette.setText("Все задания выполнены!");
+                            }
+                        }
                     }
 
                     @Override
@@ -158,61 +212,7 @@ public class SexRoulette extends AppCompatActivity {
                     }
 
                 });
-                rollButton.startAnimation(rotate);
-
-                int randomIndex;
-                String task;
-                CounterLiteExample exampleLite = new CounterLiteExample();
-                CounterMediumExample exampleMedium = new CounterMediumExample();
-                CounterExtremeExample exampleExtreme = new CounterExtremeExample();
-
-                if (isMale & counterLite < 4){
-                    if (!tasksLiteListMale.isEmpty()) {
-                        counterLite = exampleLite.incrementCounter();
-                        randomIndex = random.nextInt(tasksLiteListMale.size());
-                        task = tasksLiteListMale.get(randomIndex);
-                        ResultRoulette.setText(task);
-                        tasksLiteListMale.remove(randomIndex);
-                    } else if (!tasksMediumListMale.isEmpty() & counterMedium < 4){
-                            randomIndex = random.nextInt(tasksMediumListMale.size());
-                            task = tasksMediumListMale.get(randomIndex);
-                            ResultRoulette.setText(task);
-                            tasksMediumListMale.remove(randomIndex);
-                            counterMedium = exampleMedium.incrementCounter();
-                    } else if (!tasksExtremeListMale.isEmpty() & counterExtreme < 4) {
-                                randomIndex = random.nextInt(tasksExtremeListMale.size());
-                                task = tasksExtremeListMale.get(randomIndex);
-                                ResultRoulette.setText(task);
-                                tasksExtremeListMale.remove(randomIndex);
-                                counterExtreme = exampleExtreme.incrementCounter();
-                    } else {
-                        ResultRoulette.setText("Все задания выполнены!");
-                    }
-                } else {
-                    if (!tasksLiteListWoman.isEmpty() & counterLite < 4) {
-                        randomIndex = random.nextInt(tasksLiteListWoman.size());
-                        task = tasksLiteListWoman.get(randomIndex);
-                        ResultRoulette.setText(task);
-                        tasksLiteListWoman.remove(randomIndex);
-                        counterLite = exampleLite.incrementCounter();
-                    } else if (!tasksMediumListWoman.isEmpty() & counterMedium < 4){
-                            randomIndex = random.nextInt(tasksMediumListWoman.size());
-                            task = tasksMediumListWoman.get(randomIndex);
-                            ResultRoulette.setText(task);
-                            tasksMediumListWoman.remove(randomIndex);
-                            counterMedium = exampleMedium.incrementCounter();
-                    } else if (!tasksExtremeListWoman.isEmpty() & counterExtreme < 4) {
-                                randomIndex = random.nextInt(tasksExtremeListWoman.size());
-                                task = tasksExtremeListWoman.get(randomIndex);
-                                ResultRoulette.setText(task);
-                                tasksExtremeListWoman.remove(randomIndex);
-                                counterExtreme = exampleExtreme.incrementCounter();
-                    }
-                    else {
-                        ResultRoulette.setText("Все задания выполнены!");
-                    }
-                }
-
+                imageView.startAnimation(rotate);
             }
         });
     }
