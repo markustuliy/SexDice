@@ -146,41 +146,30 @@
 >
 
 
-        <Button
+        <ImageButton
             android:id="@+id/SettingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:fontFamily="@font/philosopher_bold"
             android:textColor="@color/black"
-            android:text="Settings"
-            android:backgroundTint="#FF00FA"/>
+            android:background="@drawable/button_2" />
 
-        <Button
+        <ImageButton
             android:id="@+id/SexDiceButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FF00FA"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_3"
             android:fontFamily="@font/philosopher_bold"
-            android:text="Sex Dice"
-            android:textColor="@color/black" />
+            android:layout_marginTop="10dp"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/SexRouletteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_4"
             android:fontFamily="@font/philosopher_bold"
-            android:textColor="@color/black"
-            android:text="Sex Roulette"
-            android:backgroundTint="#FF00FA"/>
+            android:layout_marginTop="10dp"/>
 
-        <Button
-            android:id="@+id/SexPosesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/philosopher_bold"
-            android:textColor="@color/black"
-            android:text="Sex Poses"
-            android:backgroundTint="#FF00FA"/>
 
     </LinearLayout>
 

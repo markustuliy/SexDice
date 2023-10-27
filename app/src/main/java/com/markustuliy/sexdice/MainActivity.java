@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
     private String ETName1String;
@@ -19,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button goToSexDiceActivity = findViewById(R.id.SexDiceButton);
-        Button goToSexRouletteActivity = findViewById(R.id.SexRouletteButton);
-        Button goToSettingsActivity = findViewById(R.id.SettingButton);
+        ImageButton goToSexDiceActivity = findViewById(R.id.SexDiceButton);
+        ImageButton goToSexRouletteActivity = findViewById(R.id.SexRouletteButton);
+        ImageButton goToSettingsActivity = findViewById(R.id.SettingButton);
 
         // Получение текста из EditText
         EditText ETNameMale = findViewById(R.id.ETName3); // Замените R.id.editText на ваш ID EditText
