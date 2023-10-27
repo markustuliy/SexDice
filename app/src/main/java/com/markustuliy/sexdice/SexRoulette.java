@@ -1,9 +1,16 @@
 package com.markustuliy.sexdice;
 
+import static com.markustuliy.sexdice.SettingsActivity.APP_PREFERENCES;
+import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_GREEN;
+import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ORANGE;
+import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_RED;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -60,6 +67,10 @@ public class SexRoulette extends AppCompatActivity {
         textName = findViewById(R.id.textname);
         ImageView imageView = findViewById(R.id.imageView);
         Intent intent = getIntent();
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        int LiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 8);
+        int MediumSettingsCounter = mSettings.getInt(APP_SETTINGS_ORANGE, 8);
+        int ExtremeSettingsCounter = mSettings.getInt(APP_SETTINGS_RED, 8);
         if (intent != null && intent.hasExtra("Name1received")) {
             Name1 = intent.getStringExtra("Name1received");
         }
@@ -158,20 +169,20 @@ public class SexRoulette extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        if (isMale & counterLite < 4){
+                        if (isMale & counterLite < LiteSettingsCounter){
                             if (!tasksLiteListMale.isEmpty()) {
                                 counterLite = exampleLite.incrementCounter();
                                 randomIndex = random.nextInt(tasksLiteListMale.size());
                                 task = tasksLiteListMale.get(randomIndex);
                                 ResultRoulette.setText(task);
                                 tasksLiteListMale.remove(randomIndex);
-                            } else if (!tasksMediumListMale.isEmpty() & counterMedium < 4){
+                            } else if (!tasksMediumListMale.isEmpty() & counterMedium < MediumSettingsCounter){
                                 randomIndex = random.nextInt(tasksMediumListMale.size());
                                 task = tasksMediumListMale.get(randomIndex);
                                 ResultRoulette.setText(task);
                                 tasksMediumListMale.remove(randomIndex);
                                 counterMedium = exampleMedium.incrementCounter();
-                            } else if (!tasksExtremeListMale.isEmpty() & counterExtreme < 4) {
+                            } else if (!tasksExtremeListMale.isEmpty() & counterExtreme < ExtremeSettingsCounter) {
                                 randomIndex = random.nextInt(tasksExtremeListMale.size());
                                 task = tasksExtremeListMale.get(randomIndex);
                                 ResultRoulette.setText(task);
@@ -181,19 +192,19 @@ public class SexRoulette extends AppCompatActivity {
                                 ResultRoulette.setText("Все задания выполнены!");
                             }
                         } else {
-                            if (!tasksLiteListWoman.isEmpty() & counterLite < 4) {
+                            if (!tasksLiteListWoman.isEmpty() & counterLite < LiteSettingsCounter) {
                                 randomIndex = random.nextInt(tasksLiteListWoman.size());
                                 task = tasksLiteListWoman.get(randomIndex);
                                 ResultRoulette.setText(task);
                                 tasksLiteListWoman.remove(randomIndex);
                                 counterLite = exampleLite.incrementCounter();
-                            } else if (!tasksMediumListWoman.isEmpty() & counterMedium < 4){
+                            } else if (!tasksMediumListWoman.isEmpty() & counterMedium < MediumSettingsCounter){
                                 randomIndex = random.nextInt(tasksMediumListWoman.size());
                                 task = tasksMediumListWoman.get(randomIndex);
                                 ResultRoulette.setText(task);
                                 tasksMediumListWoman.remove(randomIndex);
                                 counterMedium = exampleMedium.incrementCounter();
-                            } else if (!tasksExtremeListWoman.isEmpty() & counterExtreme < 4) {
+                            } else if (!tasksExtremeListWoman.isEmpty() & counterExtreme < ExtremeSettingsCounter) {
                                 randomIndex = random.nextInt(tasksExtremeListWoman.size());
                                 task = tasksExtremeListWoman.get(randomIndex);
                                 ResultRoulette.setText(task);

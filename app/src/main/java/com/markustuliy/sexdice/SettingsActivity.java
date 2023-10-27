@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final String APP_PREFERENCES = "Preferences";
+    protected static final String APP_PREFERENCES = "Preferences";
     private SharedPreferences mSettings;
 
     // Создайте ключи для каждого `RadioGroup` и других параметров
