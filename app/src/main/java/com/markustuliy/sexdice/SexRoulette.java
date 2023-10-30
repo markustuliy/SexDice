@@ -27,6 +27,8 @@ import java.util.Random;
 
 public class SexRoulette extends AppCompatActivity {
     private final Random random = new Random();
+    private ArrayList<String> tasksVeryLiteListMale = new ArrayList<>();
+    private ArrayList<String> tasksVeryLiteListWoman = new ArrayList<>();
     private ArrayList<String> tasksLiteListMale = new ArrayList<>();
     private ArrayList<String> tasksLiteListWoman = new ArrayList<>();
     private ArrayList<String> tasksMediumListMale = new ArrayList<>();
@@ -46,11 +48,13 @@ public class SexRoulette extends AppCompatActivity {
     private int counterLite = 0;
     private int counterMedium = 0;
     private int counterExtreme = 0;
-    private int deegre = 0;
-    private int old_deegre = 0;
+    private int degree = 0;
+    private int old_degree = 0;
     private static final float FACTOR = 4.83f;
 
 
+    private static final String KEY_TASKS_LIST_VERY_LITE_MALE = "tasksVeryLiteListMale";
+    private static final String KEY_TASKS_LIST_VERY_LITE_WOMAN = "tasksVeryLiteListWoman";
     private static final String KEY_TASKS_LIST_LITE_MALE = "tasksLiteListMale";
     private static final String KEY_TASKS_LIST_LITE_WOMAN = "tasksLiteListWoman";
     private static final String KEY_TASKS_MEDIUM_LITE_MALE = "tasksMediumListMale";
@@ -70,6 +74,7 @@ public class SexRoulette extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView);
         Intent intent = getIntent();
         SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        int VeryLiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 2)/2;
         int LiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 2);
         int MediumSettingsCounter = mSettings.getInt(APP_SETTINGS_ORANGE, 2);
         int ExtremeSettingsCounter = mSettings.getInt(APP_SETTINGS_RED, 2);
@@ -83,6 +88,8 @@ public class SexRoulette extends AppCompatActivity {
             Name2 = intent.getStringExtra("Name2received");
         }
         if (savedInstanceState != null) {
+            tasksVeryLiteListMale = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_VERY_LITE_MALE);
+            tasksVeryLiteListWoman = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_VERY_LITE_WOMAN);
             tasksLiteListMale = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_LITE_MALE);
             tasksLiteListWoman = savedInstanceState.getStringArrayList(KEY_TASKS_LIST_LITE_WOMAN);
             tasksMediumListMale = savedInstanceState.getStringArrayList(KEY_TASKS_MEDIUM_LITE_MALE);
@@ -91,6 +98,40 @@ public class SexRoulette extends AppCompatActivity {
             tasksExtremeListWoman = savedInstanceState.getStringArrayList(KEY_TASKS_EXTRIME_LITE_WOMAN);
             isMale = savedInstanceState.getBoolean("isMale");
         } else {
+            // Сверх Легкие задания Мужчине
+            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 1: ...");
+            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 2: ...");
+            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 3: ...");
+            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 4: ...");
+            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 5: ...");
+            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 6: ...");
+            if (TasksOral){
+                tasksVeryLiteListMale.add("Сверх Легкое оральное Задание Мужчине 1: ...");
+                tasksVeryLiteListMale.add("Сверх Легкое оральное Задание Мужчине 2: ...");
+                tasksVeryLiteListMale.add("Сверх Легкое оральное Задание Мужчине 3: ...");
+            }
+            if (TasksAnal){
+                tasksVeryLiteListMale.add("Сверх Легкое анальное Задание Мужчине 1: ...");
+                tasksVeryLiteListMale.add("Сверх Легкое анальное Задание Мужчине 2: ...");
+                tasksVeryLiteListMale.add("Сверх Легкое анальное Задание Мужчине 3: ...");
+            }
+            // Сверх Легкие задания Женщине
+            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 1: ...");
+            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 2: ...");
+            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 3: ...");
+            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 4: ...");
+            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 5: ...");
+            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 6: ...");
+            if (TasksOral){
+                tasksVeryLiteListWoman.add("Сверх Легкое оральное Задание Женщине 1: ...");
+                tasksVeryLiteListWoman.add("Сверх Легкое оральное Задание Женщине 2: ...");
+                tasksVeryLiteListWoman.add("Сверх Легкое оральное Задание Женщине 3: ...");
+            }
+            if (TasksAnal){
+                tasksVeryLiteListWoman.add("Сверх Легкое анальное Задание Женщине 1: ...");
+                tasksVeryLiteListWoman.add("Сверх Легкое анальное Задание Женщине 2: ...");
+                tasksVeryLiteListWoman.add("Сверх Легкое анальное Задание Женщине 3: ...");
+            }
             // Легкие задания Мужчине
             tasksLiteListMale.add("Легкое Задание Мужчине 1: ...");
             tasksLiteListMale.add("Легкое Задание Мужчине 2: ...");
@@ -201,11 +242,11 @@ public class SexRoulette extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                old_deegre = deegre % 360;
-                deegre = random.nextInt(3600 ) + 720;
-                RotateAnimation rotate = new RotateAnimation(old_deegre, deegre,
+                old_degree = degree % 360;
+                degree = random.nextInt(360 ) + 180;
+                RotateAnimation rotate = new RotateAnimation(old_degree, degree,
                         RotateAnimation.RELATIVE_TO_SELF, 0.5f,RotateAnimation.RELATIVE_TO_SELF,0.5f);
-                rotate.setDuration(3600);
+                rotate.setDuration(1800);
                 rotate.setFillAfter(true);
                 rotate.setInterpolator(new DecelerateInterpolator());
 
@@ -231,13 +272,20 @@ public class SexRoulette extends AppCompatActivity {
                         isEvent1 = !isEvent1;
                         isMale = !isMale;
                         if (isMale){
-                            if (!tasksLiteListMale.isEmpty() & counterLite < LiteSettingsCounter) {
+                            if (!tasksVeryLiteListMale.isEmpty() & counterLite < VeryLiteSettingsCounter) {
+                                counterLite = exampleLite.incrementCounter();
+                                randomIndex = random.nextInt(tasksVeryLiteListMale.size());
+                                task = tasksVeryLiteListMale.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksVeryLiteListMale.remove(randomIndex);
+                            } else if(!tasksLiteListMale.isEmpty() & counterLite < LiteSettingsCounter){
                                 counterLite = exampleLite.incrementCounter();
                                 randomIndex = random.nextInt(tasksLiteListMale.size());
                                 task = tasksLiteListMale.get(randomIndex);
                                 ResultRoulette.setText(task);
                                 tasksLiteListMale.remove(randomIndex);
-                            } else if (!tasksMediumListMale.isEmpty() & counterMedium < MediumSettingsCounter){
+                            }
+                            else if (!tasksMediumListMale.isEmpty() & counterMedium < MediumSettingsCounter){
                                 randomIndex = random.nextInt(tasksMediumListMale.size());
                                 task = tasksMediumListMale.get(randomIndex);
                                 ResultRoulette.setText(task);
@@ -253,13 +301,20 @@ public class SexRoulette extends AppCompatActivity {
                                 ResultRoulette.setText("Все задания выполнены!");
                             }
                         } else {
-                            if (!tasksLiteListWoman.isEmpty() & counterLite < LiteSettingsCounter) {
+                            if (!tasksVeryLiteListWoman.isEmpty() & counterLite < VeryLiteSettingsCounter) {
+                                randomIndex = random.nextInt(tasksVeryLiteListWoman.size());
+                                task = tasksVeryLiteListWoman.get(randomIndex);
+                                ResultRoulette.setText(task);
+                                tasksVeryLiteListWoman.remove(randomIndex);
+                                counterLite = exampleLite.incrementCounter();
+                            } else if (!tasksLiteListWoman.isEmpty() & counterLite < LiteSettingsCounter) {
+                                counterLite = exampleLite.incrementCounter();
                                 randomIndex = random.nextInt(tasksLiteListWoman.size());
                                 task = tasksLiteListWoman.get(randomIndex);
                                 ResultRoulette.setText(task);
                                 tasksLiteListWoman.remove(randomIndex);
-                                counterLite = exampleLite.incrementCounter();
-                            } else if (!tasksMediumListWoman.isEmpty() & counterMedium < MediumSettingsCounter){
+                            }
+                            else if (!tasksMediumListWoman.isEmpty() & counterMedium < MediumSettingsCounter){
                                 randomIndex = random.nextInt(tasksMediumListWoman.size());
                                 task = tasksMediumListWoman.get(randomIndex);
                                 ResultRoulette.setText(task);
