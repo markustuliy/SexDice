@@ -1,7 +1,9 @@
 package com.markustuliy.sexdice;
 
 import static com.markustuliy.sexdice.SettingsActivity.APP_PREFERENCES;
+import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ANAL;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_GREEN;
+import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ORAL;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ORANGE;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_RED;
 
@@ -71,6 +73,9 @@ public class SexRoulette extends AppCompatActivity {
         int LiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 2);
         int MediumSettingsCounter = mSettings.getInt(APP_SETTINGS_ORANGE, 2);
         int ExtremeSettingsCounter = mSettings.getInt(APP_SETTINGS_RED, 2);
+        boolean TasksOral = mSettings.getBoolean(APP_SETTINGS_ORAL, false);
+        boolean TasksAnal = mSettings.getBoolean(APP_SETTINGS_ANAL, false);
+
         if (intent != null && intent.hasExtra("Name1received")) {
             Name1 = intent.getStringExtra("Name1received");
         }
@@ -93,6 +98,16 @@ public class SexRoulette extends AppCompatActivity {
             tasksLiteListMale.add("Легкое Задание Мужчине 4: ...");
             tasksLiteListMale.add("Легкое Задание Мужчине 5: ...");
             tasksLiteListMale.add("Легкое Задание Мужчине 6: ...");
+            if (TasksOral){
+                tasksLiteListMale.add("Легкое оральное Задание Мужчине 1: ...");
+                tasksLiteListMale.add("Легкое оральное Задание Мужчине 2: ...");
+                tasksLiteListMale.add("Легкое оральное Задание Мужчине 3: ...");
+            }
+            if (TasksAnal){
+                tasksLiteListMale.add("Легкое анальное Задание Мужчине 1: ...");
+                tasksLiteListMale.add("Легкое анальное Задание Мужчине 2: ...");
+                tasksLiteListMale.add("Легкое анальное Задание Мужчине 3: ...");
+            }
             // Легкие задания Женщине
             tasksLiteListWoman.add("Легкое Задание Женщине 1: ...");
             tasksLiteListWoman.add("Легкое Задание Женщине 2: ...");
@@ -100,6 +115,16 @@ public class SexRoulette extends AppCompatActivity {
             tasksLiteListWoman.add("Легкое Задание Женщине 4: ...");
             tasksLiteListWoman.add("Легкое Задание Женщине 5: ...");
             tasksLiteListWoman.add("Легкое Задание Женщине 6: ...");
+            if (TasksOral){
+                tasksLiteListWoman.add("Легкое оральное Задание Женщине 1: ...");
+                tasksLiteListWoman.add("Легкое оральное Задание Женщине 2: ...");
+                tasksLiteListWoman.add("Легкое оральное Задание Женщине 3: ...");
+            }
+            if (TasksAnal){
+                tasksLiteListMale.add("Легкое анальное Задание Женщине 1: ...");
+                tasksLiteListMale.add("Легкое анальное Задание Женщине 2: ...");
+                tasksLiteListMale.add("Легкое анальное Задание Женщине 3: ...");
+            }
 
             // Средние задания Мужчине
             tasksMediumListMale.add("Среднее Задание Мужчине 1: ...");
@@ -108,6 +133,16 @@ public class SexRoulette extends AppCompatActivity {
             tasksMediumListMale.add("Среднее Задание Мужчине 4: ...");
             tasksMediumListMale.add("Среднее Задание Мужчине 5: ...");
             tasksMediumListMale.add("Среднее Задание Мужчине 6: ...");
+            if (TasksOral){
+                tasksMediumListMale.add("Среднее оральное Задание Мужчине 1: ...");
+                tasksMediumListMale.add("Среднее оральное Задание Мужчине 2: ...");
+                tasksMediumListMale.add("Среднее оральное Задание Мужчине 3: ...");
+            }
+            if (TasksAnal){
+                tasksMediumListMale.add("Среднее анальное Задание Мужчине 1: ...");
+                tasksMediumListMale.add("Среднее анальное Задание Мужчине 2: ...");
+                tasksMediumListMale.add("Среднее анальное Задание Мужчине 3: ...");
+            }
             // Средние задания Женщине
             tasksMediumListWoman.add("Среднее Задание Женщине 1: ...");
             tasksMediumListWoman.add("Среднее Задание Женщине 2: ...");
@@ -115,6 +150,16 @@ public class SexRoulette extends AppCompatActivity {
             tasksMediumListWoman.add("Среднее Задание Женщине 4: ...");
             tasksMediumListWoman.add("Среднее Задание Женщине 5: ...");
             tasksMediumListWoman.add("Среднее Задание Женщине 6: ...");
+            if (TasksOral){
+                tasksMediumListWoman.add("Среднее оральное Задание Женщине 1: ...");
+                tasksMediumListWoman.add("Среднее оральное Задание Женщине 2: ...");
+                tasksMediumListWoman.add("Среднее оральное Задание Женщине 3: ...");
+            }
+            if (TasksAnal){
+                tasksMediumListWoman.add("Среднее анальное Задание Женщине 1: ...");
+                tasksMediumListWoman.add("Среднее анальное Задание Женщине 2: ...");
+                tasksMediumListWoman.add("Среднее анальное Задание Женщине 3: ...");
+            }
 
             // Экстрим задания Мужчине
             tasksExtremeListMale.add("Тяжелое Задание Мужчине 1: ...");
@@ -123,6 +168,16 @@ public class SexRoulette extends AppCompatActivity {
             tasksExtremeListMale.add("Тяжелое Задание Мужчине 4: ...");
             tasksExtremeListMale.add("Тяжелое Задание Мужчине 5: ...");
             tasksExtremeListMale.add("Тяжелое Задание Мужчине 6: ...");
+            if (TasksOral){
+                tasksExtremeListMale.add("Тяжелое оральное Задание Мужчине 1: ...");
+                tasksExtremeListMale.add("Тяжелое оральное Задание Мужчине 2: ...");
+                tasksExtremeListMale.add("Тяжелое оральное Задание Мужчине 3: ...");
+            }
+            if (TasksAnal){
+                tasksExtremeListMale.add("Тяжелое анальное Задание Мужчине 1: ...");
+                tasksExtremeListMale.add("Тяжелое анальное Задание Мужчине 2: ...");
+                tasksExtremeListMale.add("Тяжелое анальное Задание Мужчине 3: ...");
+            }
             // Экстрим задания Женщине
             tasksExtremeListWoman.add("Тяжелое Задание Женщине 1: ...");
             tasksExtremeListWoman.add("Тяжелое Задание Женщине 2: ...");
@@ -130,6 +185,16 @@ public class SexRoulette extends AppCompatActivity {
             tasksExtremeListWoman.add("Тяжелое Задание Женщине 4: ...");
             tasksExtremeListWoman.add("Тяжелое Задание Женщине 5: ...");
             tasksExtremeListWoman.add("Тяжелое Задание Женщине 6: ...");
+            if (TasksOral){
+                tasksExtremeListWoman.add("Тяжелое оральное Задание Женщине 1: ...");
+                tasksExtremeListWoman.add("Тяжелое оральное Задание Женщине 2: ...");
+                tasksExtremeListWoman.add("Тяжелое оральное Задание Женщине 3: ...");
+            }
+            if (TasksAnal){
+                tasksExtremeListWoman.add("Тяжелое анальное Задание Женщине 1: ...");
+                tasksExtremeListWoman.add("Тяжелое анальное Задание Женщине 2: ...");
+                tasksExtremeListWoman.add("Тяжелое анальное Задание Женщине 3: ...");
+            }
         }
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
