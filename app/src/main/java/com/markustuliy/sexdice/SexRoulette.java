@@ -113,12 +113,22 @@ public class SexRoulette extends AppCompatActivity {
             isMale = savedInstanceState.getBoolean("isMale");
         } else {
             // Сверх Легкие задания Мужчине
-            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 1: ...");
-            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 2: ...");
-            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 3: ...");
-            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 4: ...");
-            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 5: ...");
-            tasksVeryLiteListMale.add("Сверх Легкое Задание Мужчине 6: ...");
+            tasksVeryLiteListMale.add("Подойди к девушке, обними её за талию и прижми к себе. Погладь её нежно от шеи к груди");
+            tasksVeryLiteListMale.add("Нежно целуй ее шею, лаская руками тело партнера.");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+            tasksVeryLiteListMale.add("Измерь грудь девушки любым предметом, если ничего нет, используй для этого руки");
+            tasksVeryLiteListMale.add("Сейчас ты должен оголить свой торс. Девушка должна осторожно его трогать");
+            tasksVeryLiteListMale.add("Измерь бедра партрнера любыми подручными средствами, если их нет, используй для измерения руки");
+            tasksVeryLiteListMale.add("Сделай 10 отжиманий над партнером");
+            tasksVeryLiteListMale.add("Приобними девушку за шею и нежно поцелуй.");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+            tasksVeryLiteListMale.add("Нежно пощекочи девушку");
+
+
             if (TasksOral){
                 tasksVeryLiteListMale.add("Сверх Легкое оральное Задание Мужчине 1: ...");
                 tasksVeryLiteListMale.add("Сверх Легкое оральное Задание Мужчине 2: ...");
@@ -130,12 +140,18 @@ public class SexRoulette extends AppCompatActivity {
                 tasksVeryLiteListMale.add("Сверх Легкое анальное Задание Мужчине 3: ...");
             }
             // Сверх Легкие задания Женщине
-            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 1: ...");
-            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 2: ...");
-            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 3: ...");
-            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 4: ...");
-            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 5: ...");
-            tasksVeryLiteListWoman.add("Сверх Легкое Задание Женщине 6: ...");
+            tasksVeryLiteListWoman.add("Сядь напротив него, повернувшись к нему лицом. Положи ногу на ногу, сексуально смотря ему в глаза");
+            tasksVeryLiteListWoman.add("Пройдись по комнате как королева красоты по подиумуму. Не забывай вилять бёдрами.");
+            tasksVeryLiteListWoman.add("Если на тебе надеты шортики или юбочка, то ты должна их сейчас эротично снять с себя. Если шортиков нет и на тебе любая другая одежда, то просто пропускаешь это задание.");
+            tasksVeryLiteListWoman.add("Покажи свою лучшую походку. Сделай три круга по комнате, сексуально виляя бедрами.");
+            tasksVeryLiteListWoman.add("Если на дворе по календарю сейчас зима, то девушка снимает с себя 1 предмет одежды. Если весна, то девушка снимает с себя 2 предмета одежды. Если сейчас лето, то парень снимает с себя 2 предмета одежды и если осень то парень снимает с себя 1 предмет одежды.");
+            tasksVeryLiteListWoman.add("Надень каблучки и не сгибая колен упрись руками на стул. Делай прогиб и выгиб поясницы. Накачаете пресс или нет не так важно, главное чтобы парень смотрел и наслаждался процессом.");
+            tasksVeryLiteListWoman.add("Пока вы ещё в одежде, ты должна прижаться попкой к его паху и двигаться, возбуждая его этими движениями.");
+            tasksVeryLiteListWoman.add("Пока вы ещё в одежде, ты должна прижаться попкой к его паху и двигаться, возбуждая его этими движениями.");
+            tasksVeryLiteListWoman.add("Пока вы ещё в одежде, ты должна прижаться попкой к его паху и двигаться, возбуждая его этими движениями.");
+            tasksVeryLiteListWoman.add("Пока вы ещё в одежде, ты должна прижаться попкой к его паху и двигаться, возбуждая его этими движениями.");
+            tasksVeryLiteListWoman.add("Пока вы ещё в одежде, ты должна прижаться попкой к его паху и двигаться, возбуждая его этими движениями.");
+
             if (TasksOral){
                 tasksVeryLiteListWoman.add("Сверх Легкое оральное Задание Женщине 1: ...");
                 tasksVeryLiteListWoman.add("Сверх Легкое оральное Задание Женщине 2: ...");
@@ -147,12 +163,31 @@ public class SexRoulette extends AppCompatActivity {
                 tasksVeryLiteListWoman.add("Сверх Легкое анальное Задание Женщине 3: ...");
             }
             // Сверх Легкие задания ОБЩИЕ
-            tasksVeryLiteListAssignment.add("Сверх Легкое Общее Задание 1: ...");
-            tasksVeryLiteListAssignment.add("Сверх Легкое Общее Задание 2: ...");
-            tasksVeryLiteListAssignment.add("Сверх Легкое Общее Задание 3: ...");
-            tasksVeryLiteListAssignment.add("Сверх Легкое Общее Задание 4: ...");
-            tasksVeryLiteListAssignment.add("Сверх Легкое Общее Задание 5: ...");
-            tasksVeryLiteListAssignment.add("Сверх Легкое Общее Задание 6: ...");
+            tasksVeryLiteListAssignment.add("Включи медленную и романтичную музыку");
+            tasksVeryLiteListAssignment.add("Целуй партнера в губы пока не сработает таймер, в процессе можете ласкать руками шею и волосы.");
+            tasksVeryLiteListAssignment.add("Сделай партнеру возбуждающий массаж любой части тела, о которой она/он попросит.");
+            tasksVeryLiteListAssignment.add("Поцелуй партнера в носик.");
+            tasksVeryLiteListAssignment.add("Тебе нужно посмотреть партнеру прямо в глаза и не отрывать взгляд пока идёт таймер");
+            tasksVeryLiteListAssignment.add("Устройте на кровати \"Батут\" вдоволь вдвоем попрыгав. Выполняйте задание только если уверены что не будет печальных последствий ни для вас, ни для кровати");
+            tasksVeryLiteListAssignment.add("Партнер пишет на листке какое-нибудь действие, которое он/она хочет, чтобы ты выполнил/а (например, помять плечи или поцеловать в шею). Методом проб и ошибок попробуй своими действиями отгадать, что написано на листке. У тебя пять попыток.");
+            tasksVeryLiteListAssignment.add("Покрой поцелуями нижнюю часть живота партнера, при этом не целуя ниже");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Поцелуй страстно партнера и прижми его к стене");
+            tasksVeryLiteListAssignment.add("Если ты знаешь любимый фильм партнера, озвучь его и сними с него штаны, иначе свои");
+            tasksVeryLiteListAssignment.add("самый сильный из вас двоих должен схватить другого на 2 минуты и поцеловать у стены");
+            tasksVeryLiteListAssignment.add("Первый кто найдет предмет цветом похожий на цвета приложения, может делать с ним всё что захочет");
+            tasksVeryLiteListAssignment.add("Пусть партнер тебя отшлепает, если тебе это нравится.");
+            tasksVeryLiteListAssignment.add("Сделай нежный массаж шеи и плеч, если у Вас есть масло, то используй его.\t");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+            tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
+
+
+
             if (TasksOral){
                 tasksVeryLiteListAssignment.add("Сверх Легкое оральное Общее Задание 1: ...");
                 tasksVeryLiteListAssignment.add("Сверх Легкое оральное Общее Задание 2: ...");
