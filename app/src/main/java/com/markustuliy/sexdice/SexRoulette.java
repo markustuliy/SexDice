@@ -177,7 +177,7 @@ public class SexRoulette extends AppCompatActivity {
             tasksVeryLiteListAssignment.add("самый сильный из вас двоих должен схватить другого на 2 минуты и поцеловать у стены");
             tasksVeryLiteListAssignment.add("Первый кто найдет предмет цветом похожий на цвета приложения, может делать с ним всё что захочет");
             tasksVeryLiteListAssignment.add("Пусть партнер тебя отшлепает, если тебе это нравится.");
-            tasksVeryLiteListAssignment.add("Сделай нежный массаж шеи и плеч, если у Вас есть масло, то используй его.\t");
+            tasksVeryLiteListAssignment.add("Сделай нежный массаж шеи и плеч, если у Вас есть масло, то используй его.");
             tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
             tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
             tasksVeryLiteListAssignment.add("Медленно и страстно сними свой верх");
