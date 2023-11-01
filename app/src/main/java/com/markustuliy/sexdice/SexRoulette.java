@@ -56,6 +56,7 @@ public class SexRoulette extends AppCompatActivity {
     private int old_degree = 0;
     private static final float FACTOR = 4.83f;
     private int coin = 1;
+    private String[] numbers = {"120","45","60","20", "80","30","90","50"};
 
 
     private static final String KEY_TASKS_LIST_VERY_LITE_MALE = "tasksVeryLiteListMale";
@@ -346,9 +347,9 @@ public class SexRoulette extends AppCompatActivity {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         if (isEvent1) {
-                            textName.setText(Name1);
+                            textName.setText(Name1 + getResult(360 - (degree % 360)));
                         } else {
-                            textName.setText(Name2);
+                            textName.setText(Name2 + getResult(360 - (degree % 360)));
                         }
                         isEvent1 = !isEvent1;
                         isMale = !isMale;
@@ -508,5 +509,24 @@ public class SexRoulette extends AppCompatActivity {
             counterE++;
             return counterE;
         }
+    }
+    private String getResult(int degree)
+    {
+        String text = "";
+
+        int factor_x = 1;
+        int factor_y = 3;
+        for(int i = 0;i < 8; i++){
+            if(degree >= (FACTOR * factor_x) && degree < (FACTOR * factor_y))
+            {
+                text = numbers[i];
+            }
+            factor_x += 2;
+            factor_y += 2;
+        }
+        if(degree >= (FACTOR * 16) && degree < 360 || degree >= 0 && degree < (FACTOR * 1))
+            text = numbers[numbers.length - 1];
+
+        return text;
     }
 }
