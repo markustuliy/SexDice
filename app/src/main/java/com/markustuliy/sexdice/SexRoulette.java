@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -22,6 +23,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -58,6 +61,7 @@ public class SexRoulette extends AppCompatActivity {
     private static final float FACTOR = 22.5f;
     private int coin = 1;
     private String[] numbers = {"120","45","60","20", "80","30","90","50"};
+    private CountDownTimer cTimer = null;
 
 
     private static final String KEY_TASKS_LIST_VERY_LITE_MALE = "tasksVeryLiteListMale";
@@ -847,12 +851,16 @@ public class SexRoulette extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
+                        cancelTimer();
                         if (isEvent1) {
                             textName.setText(Name1);
                         } else {
                             textName.setText(Name2);
                         }
-                        textTimer.setText(getResult(360 - (degree % 360)));
+
+                        int n = Integer.parseInt(getResult(360 - (degree % 360))) * 1000;
+
+                        //textTimer.setText(getResult(360 - (degree % 360)));
                         isEvent1 = !isEvent1;
                         isMale = !isMale;
                         coin = random.nextInt(2);
@@ -980,6 +988,21 @@ public class SexRoulette extends AppCompatActivity {
                                 ResultRoulette.setText("Все задания выполнены!");
                             }
                         }
+                        cTimer = new CountDownTimer(n, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                                // Used for formatting digit to be in 2 digits only
+                                NumberFormat f = new DecimalFormat("00");
+                                long min = (millisUntilFinished / 60000) % 60;
+                                long sec = (millisUntilFinished / 1000) % 60;
+                                textTimer.setText(f.format(min) + ":" + f.format(sec));
+                            }
+                            // When the task is over it will print 00:00:00 there
+                            public void onFinish() {
+                                textTimer.setText("00:00");
+                            }
+                        };
+                        cTimer.start();
+
                     }
 
                     @Override
@@ -1031,4 +1054,9 @@ public class SexRoulette extends AppCompatActivity {
 
         return text;
     }
+    void cancelTimer() {
+        if(cTimer!=null)
+            cTimer.cancel();
+    }
+
 }
