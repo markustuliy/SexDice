@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -94,6 +95,8 @@ public class SexRoulette extends AppCompatActivity {
         int LiteSettingsCounter = mSettings.getInt(APP_SETTINGS_GREEN, 2);
         int MediumSettingsCounter = mSettings.getInt(APP_SETTINGS_ORANGE, 2);
         int ExtremeSettingsCounter = mSettings.getInt(APP_SETTINGS_RED, 2);
+        int DelaySettings = mSettings.getInt(APP_SETTINGS_DELAY, 5);
+        DelaySettings = DelaySettings * 1000;
         boolean TasksOral = mSettings.getBoolean(APP_SETTINGS_ORAL, false);
         boolean TasksAnal = mSettings.getBoolean(APP_SETTINGS_ANAL, false);
 
@@ -864,23 +867,23 @@ public class SexRoulette extends AppCompatActivity {
                         isEvent1 = !isEvent1;
                         isMale = !isMale;
                         coin = random.nextInt(2);
-                        if (isMale){
+                        if (isMale) {
                             if (!tasksVeryLiteListMale.isEmpty() & counterLite < VeryLiteSettingsCounter) {
-                                if (coin == 1 & !tasksVeryLiteListAssignment.isEmpty()){
+                                if (coin == 1 & !tasksVeryLiteListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksVeryLiteListAssignment.size());
                                     task = tasksVeryLiteListAssignment.get(randomIndex);
                                     ResultRoulette.setText(task);
                                     tasksVeryLiteListAssignment.remove(randomIndex);
-                                    } else {
+                                } else {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksVeryLiteListMale.size());
                                     task = tasksVeryLiteListMale.get(randomIndex);
                                     ResultRoulette.setText(task);
                                     tasksVeryLiteListMale.remove(randomIndex);
-                                    }
-                            } else if(!tasksLiteListMale.isEmpty() & counterLite < LiteSettingsCounter){
-                                if (coin == 1 & !tasksLiteListAssignment.isEmpty()){
+                                }
+                            } else if (!tasksLiteListMale.isEmpty() & counterLite < LiteSettingsCounter) {
+                                if (coin == 1 & !tasksLiteListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksLiteListAssignment.size());
                                     task = tasksLiteListAssignment.get(randomIndex);
@@ -893,9 +896,8 @@ public class SexRoulette extends AppCompatActivity {
                                     ResultRoulette.setText(task);
                                     tasksLiteListMale.remove(randomIndex);
                                 }
-                            }
-                            else if (!tasksMediumListMale.isEmpty() & counterMedium < MediumSettingsCounter){
-                                if (coin == 1 & !tasksMediumListAssignment.isEmpty()){
+                            } else if (!tasksMediumListMale.isEmpty() & counterMedium < MediumSettingsCounter) {
+                                if (coin == 1 & !tasksMediumListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksMediumListAssignment.size());
                                     task = tasksMediumListAssignment.get(randomIndex);
@@ -909,7 +911,7 @@ public class SexRoulette extends AppCompatActivity {
                                     counterMedium = exampleMedium.incrementCounter();
                                 }
                             } else if (!tasksExtremeListMale.isEmpty() & counterExtreme < ExtremeSettingsCounter) {
-                                if (coin == 1 & !tasksExtremeListAssignment.isEmpty()){
+                                if (coin == 1 & !tasksExtremeListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksExtremeListAssignment.size());
                                     task = tasksExtremeListAssignment.get(randomIndex);
@@ -927,7 +929,7 @@ public class SexRoulette extends AppCompatActivity {
                             }
                         } else {
                             if (!tasksVeryLiteListWoman.isEmpty() & counterLite < VeryLiteSettingsCounter) {
-                                if (coin == 1 & !tasksVeryLiteListAssignment.isEmpty()){
+                                if (coin == 1 & !tasksVeryLiteListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksVeryLiteListAssignment.size());
                                     task = tasksVeryLiteListAssignment.get(randomIndex);
@@ -941,7 +943,7 @@ public class SexRoulette extends AppCompatActivity {
                                     counterLite = exampleLite.incrementCounter();
                                 }
                             } else if (!tasksLiteListWoman.isEmpty() & counterLite < LiteSettingsCounter) {
-                                if (coin == 1 & !tasksLiteListAssignment.isEmpty()){
+                                if (coin == 1 & !tasksLiteListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksLiteListAssignment.size());
                                     task = tasksLiteListAssignment.get(randomIndex);
@@ -954,9 +956,8 @@ public class SexRoulette extends AppCompatActivity {
                                     ResultRoulette.setText(task);
                                     tasksLiteListWoman.remove(randomIndex);
                                 }
-                            }
-                            else if (!tasksMediumListWoman.isEmpty() & counterMedium < MediumSettingsCounter){
-                                if (coin == 1 & !tasksMediumListAssignment.isEmpty()){
+                            } else if (!tasksMediumListWoman.isEmpty() & counterMedium < MediumSettingsCounter) {
+                                if (coin == 1 & !tasksMediumListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksMediumListAssignment.size());
                                     task = tasksMediumListAssignment.get(randomIndex);
@@ -970,7 +971,7 @@ public class SexRoulette extends AppCompatActivity {
                                     counterMedium = exampleMedium.incrementCounter();
                                 }
                             } else if (!tasksExtremeListWoman.isEmpty() & counterExtreme < ExtremeSettingsCounter) {
-                                if (coin == 1 & !tasksExtremeListAssignment.isEmpty()){
+                                if (coin == 1 & !tasksExtremeListAssignment.isEmpty()) {
                                     counterLite = exampleLite.incrementCounter();
                                     randomIndex = random.nextInt(tasksExtremeListAssignment.size());
                                     task = tasksExtremeListAssignment.get(randomIndex);
@@ -983,26 +984,28 @@ public class SexRoulette extends AppCompatActivity {
                                     tasksExtremeListWoman.remove(randomIndex);
                                     counterExtreme = exampleExtreme.incrementCounter();
                                 }
-                            }
-                            else {
+                            } else {
                                 ResultRoulette.setText("Все задания выполнены!");
                             }
                         }
-                        cTimer = new CountDownTimer(n, 1000) {
-                            public void onTick(long millisUntilFinished) {
-                                // Used for formatting digit to be in 2 digits only
-                                NumberFormat f = new DecimalFormat("00");
-                                long min = (millisUntilFinished / 60000) % 60;
-                                long sec = (millisUntilFinished / 1000) % 60;
-                                textTimer.setText(f.format(min) + ":" + f.format(sec));
-                            }
-                            // When the task is over it will print 00:00:00 there
-                            public void onFinish() {
-                                textTimer.setText("00:00");
-                            }
-                        };
-                        cTimer.start();
+                        new Handler().postDelayed(new Runnable() {
+                            public void run() {
+                                cTimer = new CountDownTimer(n, 1000) {
+                                    public void onTick(long millisUntilFinished) {
+                                        // Used for formatting digit to be in 2 digits only
+                                        NumberFormat f = new DecimalFormat("00");
+                                        long min = (millisUntilFinished / 60000) % 60;
+                                        long sec = (millisUntilFinished / 1000) % 60;
+                                        textTimer.setText(f.format(min) + ":" + f.format(sec));
+                                    }
 
+                                    // When the task is over it will print 00:00:00 there
+                                    public void onFinish() {
+                                        textTimer.setText("00:00");
+                                    }
+                                }.start();
+                            }
+                        }, DelaySettings);
                     }
 
                     @Override

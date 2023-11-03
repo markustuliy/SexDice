@@ -21,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
     // Создайте ключи для каждого `RadioGroup` и других параметров
     public static final String APP_SETTINGS_ANAL = "settings_anal";
     public static final String APP_SETTINGS_ORAL = "settings_oral";
+    public static final String APP_SETTINGS_DELAY = "settings_delay";
     public static final String APP_SETTINGS_GREEN = "settings_green";
     public static final String APP_SETTINGS_ORANGE = "settings_orange";
     public static final String APP_SETTINGS_RED = "settings_red";
