@@ -59,6 +59,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         int redValue = mSettings.getInt(APP_SETTINGS_RED, 8);
         setRadioButtonSelectedRed(RGRed, redValue);
+        int delayValue = mSettings.getInt(APP_SETTINGS_DELAY, 5);
+        setRadioButtonSelectedRed(RGRed, delayValue);
         goToMainActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +121,23 @@ public class SettingsActivity extends AppCompatActivity {
         }
         radioGroup.check(radioButton.getId());
     }
+    private void setRadioButtonDelay(RadioGroup radioGroup, int value) {
+        RadioButton radioButton;
+        switch (value) {
+            case 8:
+                radioButton = findViewById(R.id.RB5);
+                break;
+            case 16:
+                radioButton = findViewById(R.id.RB10);
+                break;
+            case 24:
+                radioButton = findViewById(R.id.RB15);
+                break;
+            default:
+                radioButton = findViewById(R.id.RB5); // Значение по умолчанию
+        }
+        radioGroup.check(radioButton.getId());
+    }
 
     private void saveSettings() {
         // Сохраняем значения в SharedPreferences при изменении настроек
@@ -134,6 +153,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         int redValue = getSelectedRadioButtonRedValue(RGRed);
         editor.putInt(APP_SETTINGS_RED, redValue);
+
+        int delayValue = getSelectedRadioButtonDelayValue(RGRed);
+        editor.putInt(APP_SETTINGS_DELAY, delayValue);
 
         editor.apply();
     }
@@ -178,9 +200,23 @@ public class SettingsActivity extends AppCompatActivity {
                 return 24;
             default:
                 return 8; // Значение по умолчанию
+
         }
     }
-
+    @SuppressLint("NonConstantResourceId")
+    private int getSelectedRadioButtonDelayValue(RadioGroup radioGroup) {
+        int radioButtonId = radioGroup.getCheckedRadioButtonId();
+        switch (radioButtonId) {
+            case R.id.RB5:
+                return 5;
+            case R.id.RB10:
+                return 10;
+            case R.id.RB15:
+                return 15;
+            default:
+                return 5; // Значение по умолчанию
+        }
+    }
     @Override
     protected void onStop() {
         super.onStop();

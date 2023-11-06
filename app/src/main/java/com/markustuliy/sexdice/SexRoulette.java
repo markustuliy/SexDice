@@ -2,6 +2,7 @@ package com.markustuliy.sexdice;
 
 import static com.markustuliy.sexdice.SettingsActivity.APP_PREFERENCES;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ANAL;
+import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_DELAY;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_GREEN;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ORAL;
 import static com.markustuliy.sexdice.SettingsActivity.APP_SETTINGS_ORANGE;
@@ -827,6 +828,7 @@ public class SexRoulette extends AppCompatActivity {
                 tasksExtremeListAssignment.add("В ее попке должна быть пробка или твой палец. Занимайтесь классическим сексом в течение 2 минут.");
             }
         }
+        int finalDelaySettings = DelaySettings;
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1005,7 +1007,7 @@ public class SexRoulette extends AppCompatActivity {
                                     }
                                 }.start();
                             }
-                        }, DelaySettings);
+                        }, finalDelaySettings);
                     }
 
                     @Override
