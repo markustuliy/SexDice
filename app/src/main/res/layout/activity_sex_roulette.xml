@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/ResultRoulette"
@@ -64,8 +64,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/wheel3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,8 +77,8 @@
 
     <ImageButton
         android:id="@+id/rouletteButton"
-        android:layout_width="67dp"
-        android:layout_height="75dp"
+        android:layout_width="57dp"
+        android:layout_height="65dp"
         android:background="@drawable/buttoncenter1"
         android:layout_marginStart="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"

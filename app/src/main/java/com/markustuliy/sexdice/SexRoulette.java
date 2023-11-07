@@ -841,6 +841,10 @@ public class SexRoulette extends AppCompatActivity {
                 rotate.setDuration(1800);
                 rotate.setFillAfter(true);
                 rotate.setInterpolator(new DecelerateInterpolator());
+                if (cTimer != null) {
+                    cTimer.cancel();
+                }
+                textTimer.setText("00:00");
 
 
                 rotate.setAnimationListener(new Animation.AnimationListener() {
@@ -851,19 +855,21 @@ public class SexRoulette extends AppCompatActivity {
                     CounterExtremeExample exampleExtreme = new CounterExtremeExample();
                     @Override
                     public void onAnimationStart(Animation animation) {
+                        rollButton.setClickable(false);
 
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        cancelTimer();
+                        rollButton.setClickable(true);
+
                         if (isEvent1) {
                             textName.setText(Name1);
                         } else {
                             textName.setText(Name2);
                         }
 
-                        int n = Integer.parseInt(getResult(360 - (degree % 360))) * 1000;
+                        int n = Integer.parseInt(getResult(360 - (degree % 360))) * 1000 + finalDelaySettings;
 
                         //textTimer.setText(getResult(360 - (degree % 360)));
                         isEvent1 = !isEvent1;
@@ -990,8 +996,6 @@ public class SexRoulette extends AppCompatActivity {
                                 ResultRoulette.setText("Все задания выполнены!");
                             }
                         }
-                        new Handler().postDelayed(new Runnable() {
-                            public void run() {
                                 cTimer = new CountDownTimer(n, 1000) {
                                     public void onTick(long millisUntilFinished) {
                                         // Used for formatting digit to be in 2 digits only
@@ -1007,8 +1011,6 @@ public class SexRoulette extends AppCompatActivity {
                                     }
                                 }.start();
                             }
-                        }, finalDelaySettings);
-                    }
 
                     @Override
                     public void onAnimationRepeat(Animation animation) {
