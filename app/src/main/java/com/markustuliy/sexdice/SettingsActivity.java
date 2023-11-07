@@ -5,13 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.yandex.mobile.ads.banner.BannerAdEventListener;
+import com.yandex.mobile.ads.banner.BannerAdSize;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.common.ImpressionData;
+import com.yandex.mobile.ads.common.MobileAds;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -31,12 +42,17 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioGroup RGGreen;
     private RadioGroup RGOrange;
     private RadioGroup RGRed;
+    private RadioGroup RGDelay;
+    private BannerAdView mBannerAd;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
-
+        MobileAds.initialize(this, () -> {
+            // Инициализация Yandex Mobile Ads
+        });
         ImageButton goToMainActivity = findViewById(R.id.save_btn);
 
         SwitchAnal = findViewById(R.id.switchAnal);
@@ -44,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
         RGGreen = findViewById(R.id.RG1);
         RGOrange = findViewById(R.id.RG2);
         RGRed = findViewById(R.id.RG3);
+        RGDelay = findViewById(R.id.RGDelay1);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -59,8 +76,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         int redValue = mSettings.getInt(APP_SETTINGS_RED, 8);
         setRadioButtonSelectedRed(RGRed, redValue);
+
         int delayValue = mSettings.getInt(APP_SETTINGS_DELAY, 5);
-        setRadioButtonSelectedRed(RGRed, delayValue);
+        setRadioButtonDelay(RGDelay, delayValue);
         goToMainActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mBannerAd = loadBannerAd(getAdSize());
     }
 
     private void setRadioButtonSelectedGreen(RadioGroup radioGroup, int value) {
@@ -124,13 +143,13 @@ public class SettingsActivity extends AppCompatActivity {
     private void setRadioButtonDelay(RadioGroup radioGroup, int value) {
         RadioButton radioButton;
         switch (value) {
-            case 8:
+            case 5:
                 radioButton = findViewById(R.id.RB5);
                 break;
-            case 16:
+            case 10:
                 radioButton = findViewById(R.id.RB10);
                 break;
-            case 24:
+            case 15:
                 radioButton = findViewById(R.id.RB15);
                 break;
             default:
@@ -154,7 +173,7 @@ public class SettingsActivity extends AppCompatActivity {
         int redValue = getSelectedRadioButtonRedValue(RGRed);
         editor.putInt(APP_SETTINGS_RED, redValue);
 
-        int delayValue = getSelectedRadioButtonDelayValue(RGRed);
+        int delayValue = getSelectedRadioButtonDelayValue(RGDelay);
         editor.putInt(APP_SETTINGS_DELAY, delayValue);
 
         editor.apply();
@@ -221,5 +240,62 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         saveSettings(); // Вызываем сохранение настроек при завершении активности
+    }
+    private BannerAdSize getAdSize() {
+        final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        final int screenHeight = Math.round(displayMetrics.heightPixels / displayMetrics.density);
+        int adWidthPixels = getResources().getDisplayMetrics().widthPixels;
+        final int adWidth = Math.round(adWidthPixels / displayMetrics.density);
+        final int maxAdHeight = screenHeight / 2;
+
+        return BannerAdSize.inlineSize(this, adWidth, maxAdHeight);
+    }
+    @NonNull
+    private BannerAdView loadBannerAd(@NonNull final BannerAdSize adSize) {
+        final BannerAdView bannerAd = findViewById(R.id.banner);
+        bannerAd.setAdSize(adSize);
+        bannerAd.setAdUnitId("R-M-3768661-1");
+        bannerAd.setBannerAdEventListener(new BannerAdEventListener() {
+            @Override
+            public void onAdLoaded() {
+                // If this callback occurs after the activity is destroyed, you
+                // must call destroy and return or you may get a memory leak.
+                // Note `isDestroyed` is a method on Activity.
+                if (isDestroyed() && mBannerAd != null) {
+                    mBannerAd.destroy();
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
+                // Ad failed to load with AdRequestError.
+                // Attempting to load a new ad from the onAdFailedToLoad() method is strongly discouraged.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Called when a click is recorded for an ad.
+            }
+
+            @Override
+            public void onLeftApplication() {
+                // Called when user is about to leave application (e.g., to go to the browser), as a result of clicking on the ad.
+            }
+
+            @Override
+            public void onReturnedToApplication() {
+                // Called when user returned to application after click.
+            }
+
+            @Override
+            public void onImpression(@Nullable ImpressionData impressionData) {
+                // Called when an impression is recorded for an ad.
+            }
+        });
+        final AdRequest adRequest = new AdRequest.Builder()
+                // Methods in the AdRequest.Builder class can be used here to specify individual options settings.
+                .build();
+        bannerAd.loadAd(adRequest);
+        return bannerAd;
     }
 }

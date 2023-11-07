@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
         ImageButton goToSexDiceActivity = findViewById(R.id.SexDiceButton);
         ImageButton goToSexRouletteActivity = findViewById(R.id.SexRouletteButton);
         ImageButton goToSettingsActivity = findViewById(R.id.SettingButton);
-        MobileAds.initialize(this, () -> {
-            // now you can use ads
-        });
-
 
         // Получение текста из EditText
         EditText ETNameMale = findViewById(R.id.ETName3); // Замените R.id.editText на ваш ID EditText
