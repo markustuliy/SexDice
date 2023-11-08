@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,10 +35,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         MobileAds.initialize(this, () -> {
             // Инициализация Yandex Mobile Ads
         });
-        ImageButton goToSexDiceActivity = findViewById(R.id.SexDiceButton);
+        //ImageButton goToSexDiceActivity = findViewById(R.id.SexDiceButton);
         ImageButton goToSexRouletteActivity = findViewById(R.id.SexRouletteButton);
         ImageButton goToSettingsActivity = findViewById(R.id.SettingButton);
 
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         EditText ETNameMale = findViewById(R.id.ETName3); // Замените R.id.editText на ваш ID EditText
         EditText ETNameFamale = findViewById(R.id.ETName4);
 
-        goToSexDiceActivity.setOnClickListener(new View.OnClickListener() {
+        /*goToSexDiceActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SexDiceActivity.class);
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Name2received", ETName2String);
                 startActivity(intent);
             }
-        });
+        });*/
         goToSexRouletteActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
